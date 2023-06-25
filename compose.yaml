@@ -2,7 +2,7 @@ x-customizable-image: &customizable_image
   # By default the image used only contains the `frappe` and `erpnext` apps.
   # See https://github.com/frappe/frappe_docker/blob/main/docs/custom-apps.md
   # about using custom images.
-  image: frappe/erpnext:${ERPNEXT_VERSION:?No ERPNext version set}
+  image: frappe/erpnext:latest
 
 x-depends-on-configurator: &depends_on_configurator
   depends_on:
@@ -46,8 +46,8 @@ services:
     command:
       - nginx-entrypoint.sh
     environment:
-      BACKEND: backend:8000
-      SOCKETIO: websocket:9000
+      BACKEND: backend:8001
+      SOCKETIO: websocket:9001
       FRAPPE_SITE_NAME_HEADER: ${FRAPPE_SITE_NAME_HEADER:-$$host}
       UPSTREAM_REAL_IP_ADDRESS: ${UPSTREAM_REAL_IP_ADDRESS:-127.0.0.1}
       UPSTREAM_REAL_IP_HEADER: ${UPSTREAM_REAL_IP_HEADER:-X-Forwarded-For}
